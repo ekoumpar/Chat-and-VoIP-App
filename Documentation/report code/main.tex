@@ -155,7 +155,9 @@ We expect that the Maximum Transmission Unit (MTU) using the UDP protocol is app
 Voice call between users can proceed by clicking the \texttt{Call} button. A function called \texttt{handleCallButton()} is created to manage actions happening every time \texttt{Call} button is clicked. The first time the button is clicked, \texttt{Start calling...} is displayed in the text area and the blue button labeled \texttt{Call} turns into a green button labeled \texttt{End Call}. When call ends, it returns to the initial state.
 
 \subsection{Voice Call Implementation}
-Once \texttt{Call} button is clicked, \texttt{call()} is invoked. The \texttt{call()} function consists of a thread to record and send voice packets of 1024 bytes, \texttt{sendVoiceThread}, and a while loop to receive and listen to incoming voice packets. Both actions are activated only when \texttt{isCalling} variable is \texttt{true}, which indicates that the call is in progress. When \texttt{Call} button is clicked again, \texttt{isCalling} becomes \texttt{false} from \texttt{handleCallButton()} and call ends using \texttt{endCall()} for closing open lines used for recording and listening \texttt{(voiceLine, speakerLine)}.
+Once \texttt{Call} button is clicked, \texttt{call()} is invoked. The \texttt{call()} function consists of a thread to record and send voice packets of 1024 bytes, \texttt{sendVoiceThread}, and a while loop to receive and listen to incoming voice packets. Both actions are activated only when \texttt{isCalling} variable is \texttt{true}, which indicates that the call is in progress. When \texttt{Call} button is clicked again, \texttt{isCalling} becomes \texttt{false} from \texttt{handleCallButton()} and call ends using \texttt{endCall()} for closing open lines used for recording and listening \texttt{(voiceLine, speakerLine)}. 
+
+The audio format used was PCM (pulse code modulation) with the following specifications: (i) sampling rate of 8000 samples/sec, (ii) 8-bit sample size, (iii) single channel, and (iv) signed samples.
 \newline
 
 \begin{lstlisting}[language=Java, caption={Voice call function}]
